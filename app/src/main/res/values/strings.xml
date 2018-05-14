@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">AccountBook</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="register_title">欢迎注册使用本记账App</string>
+    <string name="name">姓名</string>
+    <string name="tel">电话</string>
+    <string name="gender">性别</string>
+    <string name="email">邮箱</string>
+    <string name="password">密码</string>
+    <string name="password_confirm">确认密码</string>
+    <string name="bill_create_date">账单创建时间</string>
+    <string name="bill">账单</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="cancel">退出</string>
+    <string name="login_title">欢迎登录使用本记账App</string>
+</resources>

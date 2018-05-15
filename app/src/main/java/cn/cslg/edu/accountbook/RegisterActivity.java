@@ -134,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
                         try
                         {
                             Connection connection = DriverManager.getConnection(
-                                    "jdbc:mysql://192.168.137.1:3306/acountbook" +
+                                    "jdbc:mysql://192.168.137.1:3306/accountbook" +
                                             "?useUnicode=true&amp;characterEncoding=utf-8", "root",
                                     "");
                             Statement statement=connection.createStatement();

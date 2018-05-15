@@ -13,6 +13,7 @@ public class SharedPrefUtility {
     public static final String INDEX="index";
     public static final String LOGIN_DATA="loginData";
     public static final String IS_LOGIN="isLogin";
+    public static User user;
 
 
     /**
@@ -44,6 +45,10 @@ public class SharedPrefUtility {
         }
 
         editor.apply();
+    }
+
+    public static void setUser(User user){
+        SharedPrefUtility.user=user;
     }
 
 

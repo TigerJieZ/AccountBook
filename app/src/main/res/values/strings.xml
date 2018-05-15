@@ -8,7 +8,10 @@
     <string name="email">邮箱</string>
     <string name="password">密码</string>
     <string name="password_confirm">确认密码</string>
-    <string name="bill_create_date">账单创建时间</string>
+    <string name="bill_create_date">账单创建时间: </string>
+    <string name="bill_amount">账单数目: </string>
+    <string name="bill_category">账单类别: </string>
+    <string name="bill_explain">账单说明: </string>
     <string name="bill">账单</string>
     <string name="male">男</string>
     <string name="female">女</string>

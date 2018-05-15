@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                         try
                         {
                             Connection connection = DriverManager.getConnection(
-                                    "jdbc:mysql://192.168.137.1:3306/acountbook" +
+                                    "jdbc:mysql://192.168.137.1:3306/accountbook" +
                                             "?useUnicode=true&amp;characterEncoding=utf-8", "root",
                                     "");
                             Statement statement=connection.createStatement();
@@ -82,13 +82,18 @@ public class LoginActivity extends AppCompatActivity {
                                     " password='"+inputPassword+"'";
                             System.out.println(query);
                             ResultSet resultSet=statement.executeQuery(query);
+
                             while(resultSet.next()){
                                 try{
                                     String name=resultSet.getString("name");
+                                    String email=resultSet.getString("email");
+                                    String gender=resultSet.getString("gender");
+                                    String tel=resultSet.getString("tel");
                                     //保存登录状态
                                     SharedPrefUtility.setParam(LoginActivity.this, SharedPrefUtility.IS_LOGIN, true);
                                     //保存登录个人信息
                                     SharedPrefUtility.setParam(LoginActivity .this, SharedPrefUtility.LOGIN_DATA, name);
+                                    SharedPrefUtility.user=new User(name,email,gender,tel);
                                 }catch (Exception e){
                                     return;
                                 }

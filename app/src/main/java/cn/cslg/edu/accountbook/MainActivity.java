@@ -1,21 +1,116 @@
 package cn.cslg.edu.accountbook;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity {
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+    ListView listView;
+
+    private List<Bill> billList = new ArrayList<>();
+
+    Connection connection;
+    Thread thread;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(!(Boolean) SharedPrefUtility.getParam(MainActivity.this, SharedPrefUtility.IS_LOGIN, false)){
-            Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+        if(SharedPrefUtility.user==null){
+            SharedPrefUtility.setParam(MainActivity.this, SharedPrefUtility.IS_LOGIN, false);
+            SharedPrefUtility.removeParam(MainActivity.this, SharedPrefUtility.LOGIN_DATA);
+        }
+        if (!(Boolean) SharedPrefUtility.getParam(MainActivity.this, SharedPrefUtility.IS_LOGIN, false)) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         }
+
+        user=SharedPrefUtility.user;
+
+        loadBillList();
+        while(thread.isAlive()){
+
+        }
+
+        initView();
+    }
+
+    private void loadBillList() {
+        Runnable networkTask = new Runnable() {
+            @Override
+            public void run() {
+                try
+                {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    System.out.println("数据库驱动成功");
+                } catch (ClassNotFoundException e1)
+                {
+                    e1.printStackTrace();
+                    System.out.println("加载数据库引擎失败");
+                }
+
+                try
+                {
+
+                    connection = DriverManager.getConnection(
+                            "jdbc:mysql://192.168.137.1:3306/accountbook?autoReconnect=true", "root",
+                            "");
+                    System.out.println("test");
+                    Statement statement=connection.createStatement();
+                    if(user!=null){
+                        String query="SELECT * FROM bill where email='"+user.getEmail()+"'";
+                        System.out.println(query);
+                        ResultSet resultSet=statement.executeQuery(query);
+                        while(resultSet.next()){
+                            String category=resultSet.getString("category");
+                            String date=resultSet.getString("date");
+                            String explain=resultSet.getString("explain");
+                            String amount=resultSet.getString("amount");
+                            Bill temp=new Bill(category,amount,date,explain);
+                            billList.add(temp);
+                        }
+                    }
+
+                } catch (SQLException e)
+                {
+                    e.printStackTrace();
+                    System.out.println("数据库连接错误");
+
+                }
+            }
+        };
+        thread=new Thread(networkTask);
+        thread.start();
+    }
+
+    private void initView() {
+        BillsAdapter adapter = new BillsAdapter(MainActivity.this, R.layout.item_bill, billList);
+        listView =  findViewById(R.id.main_bills_listView);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
+        listView.setOnItemLongClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        return false;
     }
 }

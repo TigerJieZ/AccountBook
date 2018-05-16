@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.sql.Connection;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ListView listView;
 
     private List<Bill> billList = new ArrayList<>();
+    Button button_addBill;
 
     Connection connection;
     Thread thread;
@@ -102,6 +104,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
         listView.setOnItemLongClickListener(this);
+
+        button_addBill=findViewById(R.id.button_main_addBill);
+        button_addBill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,AddBillActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

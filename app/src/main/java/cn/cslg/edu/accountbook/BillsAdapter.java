@@ -24,7 +24,7 @@ public class BillsAdapter extends ArrayAdapter{
     @SuppressLint({ "ViewHolder", "InflateParams" })
 	@Override  
     public View getView(int position, View convertView, ViewGroup parent) {
-        Bill user = (Bill) getItem(position);
+        Bill bill = (Bill) getItem(position);
         View view = LayoutInflater.from(getContext()).inflate(R.layout.item_bill, null);
 
         TextView textViewCategory =  view.findViewById(R.id.textView_bill_category);
@@ -32,13 +32,13 @@ public class BillsAdapter extends ArrayAdapter{
         TextView textViewDate=view.findViewById(R.id.textView_bill_createDate);
         TextView textViewExplaiin=view.findViewById(R.id.textView_bill_explain);
 
-        textViewCategory.setText(user.getCategory());
-        textViewAmount.setText("￥"+user.getAmount());
-        textViewDate.setText(user.getDate());
-        textViewExplaiin.setText(user.getExplain());
+        textViewCategory.setText(bill.getCategory());
+        textViewAmount.setText("￥"+bill.getAmount());
+        textViewDate.setText(bill.getDate());
+        textViewExplaiin.setText(bill.getExplain());
 
         ImageView imageView=view.findViewById(R.id.item_bill_image);
-        switch (user.getCategory()){
+        switch (bill.getCategory()){
             case "sports":
                 imageView.setImageResource(R.drawable.img_bill_sports);
                 break;

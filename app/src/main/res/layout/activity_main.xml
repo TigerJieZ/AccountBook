@@ -9,6 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/addBill"
+            android:id="@+id/button_main_addBill"/>
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

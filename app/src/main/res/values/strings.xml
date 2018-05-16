@@ -21,4 +21,7 @@
     <string name="cancel">退出</string>
     <string name="login_title">欢迎登录使用本记账App</string>
     <string name="addBill_title">每天记一笔，生活更有序！</string>
+    <string name="submit">提交</string>
+    <string name="title_activity_add_bill">AddBillActivity</string>
+    <string name="addBill">记一笔</string>
 </resources>

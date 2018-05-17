@@ -1,12 +1,14 @@
 package cn.cslg.edu.accountbook;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.sql.Connection;
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ListView listView;
 
     private List<Bill> billList = new ArrayList<>();
-    Button button_addBill;
+    Button button_addBill,button_search;
 
     Connection connection;
     Thread thread;
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         while(resultSet.next()){
                             String category=resultSet.getString("category");
                             String date=resultSet.getString("date");
-                            String explain=resultSet.getString("explain");
+                            String explain=resultSet.getString("explains");
                             String amount=resultSet.getString("amount");
                             Bill temp=new Bill(category,amount,date,explain);
                             billList.add(temp);
@@ -110,6 +112,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this,AddBillActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        button_search=findViewById(R.id.button_main_search);
+        button_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                Intent intent=new Intent(MainActivity.this,SearchActivity.class);
                 startActivity(intent);
             }
         });

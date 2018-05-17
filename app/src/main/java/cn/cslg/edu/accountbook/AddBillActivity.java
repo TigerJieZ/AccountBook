@@ -64,8 +64,8 @@ public class AddBillActivity extends AppCompatActivity {
                                             "?useUnicode=true&amp;characterEncoding=utf-8", "root",
                                     "");
                             Statement statement=connection.createStatement();
-                            String query="INSERT INTO bill(email,date,category,explain,amount) VALUES("+"'"+SharedPrefUtility.user.getEmail()+"',"+"'"+createDate
-                                    +"',"+"'"+category+"',"+"'"+explain+"',"+"'"+amount+"'"+")";
+                            String query="INSERT INTO bill(email,date,category,explains,amount)VALUE("+"'"+SharedPrefUtility.user.getEmail()+"',"+"'"+createDate
+                                    +"',"+"'"+category+"',"+"'"+explain+"',"+"'"+amount+"'"+");";
                             System.out.println(query);
                             statement.executeUpdate(query);
                             Intent intent=new Intent(AddBillActivity.this,MainActivity.class);

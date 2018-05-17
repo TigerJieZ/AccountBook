@@ -29,7 +29,8 @@
         <activity
             android:name=".AddBillActivity"
             android:label="@string/title_activity_add_bill"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SearchActivity"></activity>
     </application>
 
 </manifest>

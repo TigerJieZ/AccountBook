@@ -24,4 +24,7 @@
     <string name="submit">提交</string>
     <string name="title_activity_add_bill">AddBillActivity</string>
     <string name="addBill">记一笔</string>
+    <string name="search">检索</string>
+    <string name="search_title">欢迎使用检索功能</string>
+    <string name="search_explain">不需要的检索项可以空着。</string>
 </resources>
